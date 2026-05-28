@@ -1,0 +1,277 @@
+:root {
+  color-scheme: light;
+  --bg: #f7f8f6;
+  --panel: #ffffff;
+  --ink: #17211c;
+  --muted: #66736c;
+  --line: #d9e0dc;
+  --accent: #176b5d;
+  --accent-strong: #0f4f45;
+  --warm: #f0b35b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.reader-panel {
+  width: min(100%, 720px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(24px, 5vw, 48px);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.primary-file-button,
+.control-button,
+.speed-button,
+.page-button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.primary-file-button:active,
+.control-button:active,
+.speed-button:active,
+.page-button:active {
+  transform: translateY(1px);
+}
+
+.primary-file-button:focus-visible,
+.control-button:focus-visible,
+.speed-button:focus-visible,
+.page-button:focus-visible,
+#pageInput:focus-visible {
+  outline: 4px solid rgba(23, 107, 93, 0.28);
+  outline-offset: 3px;
+}
+
+.primary-file-button {
+  width: 100%;
+  min-height: 112px;
+  background: var(--accent);
+  color: #fff;
+  font-size: clamp(1.65rem, 5vw, 2.6rem);
+  font-weight: 850;
+}
+
+.primary-file-button:hover {
+  background: var(--accent-strong);
+}
+
+.file-summary {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0 10px;
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+}
+
+#fileName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#pageCount {
+  flex: 0 0 auto;
+}
+
+.page-controls {
+  display: grid;
+  grid-template-columns: 1fr minmax(150px, 1.1fr) 1fr;
+  gap: 10px;
+  margin: 8px 0 18px;
+}
+
+.page-button,
+.page-field {
+  min-height: 76px;
+  background: #eef3f0;
+  color: var(--ink);
+  border-radius: 8px;
+  font-size: clamp(1.1rem, 3.5vw, 1.55rem);
+  font-weight: 850;
+}
+
+.page-field {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border: 2px solid var(--line);
+}
+
+.page-field span {
+  color: var(--muted);
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+}
+
+#pageInput {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: clamp(1.25rem, 4vw, 1.85rem);
+  font-weight: 850;
+  text-align: center;
+}
+
+.speed-group {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0 18px;
+}
+
+.speed-button {
+  min-height: 76px;
+  background: #eef3f0;
+  color: var(--ink);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 850;
+}
+
+.speed-button.is-active {
+  background: var(--warm);
+  color: #23180a;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 10px;
+}
+
+.control-button {
+  min-height: 88px;
+  padding: 0 14px;
+  background: #e7ece9;
+  color: var(--ink);
+  font-size: clamp(1.15rem, 3.2vw, 1.7rem);
+  font-weight: 850;
+}
+
+.control-button.play {
+  background: var(--ink);
+  color: #fff;
+}
+
+.control-button.ghost {
+  background: transparent;
+  border: 2px solid var(--line);
+}
+
+.control-button:disabled,
+.primary-file-button:disabled,
+.page-button:disabled,
+#pageInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+}
+
+.progress-wrap {
+  margin-top: 24px;
+}
+
+.progress-track {
+  height: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5ebe7;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 250ms ease;
+}
+
+.progress-label,
+.hint {
+  color: var(--muted);
+  font-size: clamp(1rem, 2.5vw, 1.16rem);
+}
+
+.progress-label {
+  margin: 10px 0 0;
+}
+
+.hint {
+  min-height: 3.4em;
+  margin: 24px 0 0;
+  line-height: 1.7;
+}
+
+@media (max-width: 560px) {
+  .app-shell {
+    padding: 12px;
+    align-items: stretch;
+  }
+
+  .reader-panel {
+    min-height: calc(100vh - 24px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .file-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-controls,
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    display: grid;
+  }
+
+  .control-button {
+    min-height: 74px;
+  }
+}

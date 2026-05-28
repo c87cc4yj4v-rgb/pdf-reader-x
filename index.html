@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PDF読み上げリーダー</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="reader-panel" aria-label="PDF読み上げリーダー">
+
+        <input id="fileInput" class="visually-hidden" type="file" accept="application/pdf,.pdf">
+        <button class="primary-file-button" id="chooseFileButton" type="button">
+          PDFを選ぶ
+        </button>
+
+        <div class="file-summary" aria-live="polite">
+          <span id="fileName">まだPDFが選ばれていません</span>
+          <span id="pageCount"></span>
+        </div>
+
+        <div class="page-controls" aria-label="ページ選択">
+          <button class="page-button" id="prevPageButton" type="button" disabled>前</button>
+          <label class="page-field">
+            <span>ページ</span>
+            <input id="pageInput" type="number" min="1" value="1" inputmode="numeric" disabled>
+          </label>
+          <button class="page-button" id="nextPageButton" type="button" disabled>次</button>
+        </div>
+
+        <div class="speed-group" role="group" aria-label="読み上げ速度">
+          <button class="speed-button is-active" type="button" data-speed="1">x1</button>
+          <button class="speed-button" type="button" data-speed="1.5">x1.5</button>
+          <button class="speed-button" type="button" data-speed="2">x2.0</button>
+        </div>
+
+        <div class="controls">
+          <button class="control-button play" id="playButton" type="button" disabled>読む</button>
+          <button class="control-button" id="pauseButton" type="button" disabled>止める</button>
+          <button class="control-button ghost" id="restartButton" type="button" disabled>最初から</button>
+        </div>
+
+        <div class="progress-wrap" aria-label="読み上げの進み具合">
+          <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+          <p class="progress-label" id="progressLabel">待機中</p>
+        </div>
+
+        <p class="hint" id="message" aria-live="polite">
+          PDFを選んだら、速度を選んで「読む」を押してください。
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
